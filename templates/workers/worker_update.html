@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% block title %} Update worker {% endblock %}
+
+{% block content %}
+<style>
+        .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Save Worker</button>
+</form>
+    {% if perms.workers.view_worker %}
+        <a href="{% url 'worker_list' %}" class="btn btn-primary custom-btn">Worker List</a>
+
+        <a href="{% url 'worker_detail' object.id %}" class="btn btn-info custom-btn">Worker Detail</a>
+    {% endif %}
+    {% if perms.workers.delete_worker %}
+        <a href="{% url 'worker_delete' object.id%}" class="btn btn-danger custom-btn">Worker Delete</a>
+    {% endif %}
+{% endblock %}

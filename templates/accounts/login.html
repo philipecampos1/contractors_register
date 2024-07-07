@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please login</h1>
+    
+    <div class="form-floating mb-3">
+        {{ form.username|as_crispy_field }}
+    </div>
+    <div class="form-floating mb-3">
+        {{ form.password|as_crispy_field }}
+    </div>
+
+    <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+</form>
+<br>
+<p class="fs-4">If you forgot your password <a class="btn btn-outline-primary" href="{% url 'password_reset_form' %}" >click here</a></p>
+
+{% endblock %}

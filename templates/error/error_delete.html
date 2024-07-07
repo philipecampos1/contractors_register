@@ -1,0 +1,38 @@
+{% extends '_base.html' %}
+{% load custom_filters %}
+
+{% block title %}Delete ERROR {% endblock %}
+
+{% block content %}
+<style>
+    .btn{
+        margin-top: 20px;
+    }
+</style>
+
+    <h1>ERROR trying to delete an item</h1>
+    <p>Wasn't possible to delete this item because it is in use in another table:</p>
+    <div class="d-grid gap-2 col-6 d-mx-auto">
+            {% for related_object in related_objects %}
+                    {% if related_object %}
+                        {% if related_object|instanceof:"Contractor" %}
+                            <a href="{% url 'contractor_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% elif related_object|instanceof:"Visitor" %}
+                            <a href="{% url 'visitor_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% elif related_object|instanceof:"Worker" %}
+                            <a href="{% url 'worker_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% elif related_object|instanceof:"Company" %}
+                            <a href="{% url 'company_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% elif related_object|instanceof:"Staircase" %}
+                            <a href="{% url 'staircase_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% elif related_object|instanceof:"Work_type" %}
+                            <a href="{% url 'work_type_detail' related_object.id %}" class="btn btn-info">{{ related_object }}</a>
+                        {% else %}
+                            {{ related_object }}
+                        {% endif %}
+                    {% else %}
+                        <p>No related objects found.</p>
+                    {% endif %}
+            {% endfor %}
+    </div>
+{% endblock %}

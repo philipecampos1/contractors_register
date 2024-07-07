@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block title %} Contractor Delete {% endblock %}
+
+{% block content %}
+<style>
+    .text{
+        font-size: x-large;
+    }
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<p class="text">Are you sure you want to delete the contractor <strong> {{ object.work_code }}</strong>?</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% if perms.contractors.view_contractor %}
+<a href="{% url 'contractor_list'%}" class="btn btn-primary custom-btn">Contractor List</a>
+<a href="{% url 'contractor_detail' contractor.id %}" class="btn btn-info custom-btn">Contractor Detail</a>
+{% endif %}
+{% if perms.contractors.change_contractor %}
+<a href="{% url 'contractor_update' contractor.id %}" class="btn btn-warning custom-btn">Contractor Update</a>
+{% endif %}
+{% endblock %}

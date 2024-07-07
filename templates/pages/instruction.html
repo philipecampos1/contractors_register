@@ -1,0 +1,90 @@
+{% extends '_base.html' %}
+
+{% block title %} Instructions {% endblock %}
+
+{% block content %}
+<style>
+    .intro-section, .features, .instructions, .contact, .admin-instructions {
+        padding: 50px 0;
+        text-align: center;
+    }
+    .feature-item {
+        margin-bottom: 20px;
+    }
+    .special-link {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container intro-section">
+    <h1>Welcome to Contractors Register</h1>
+    <p class="lead">Contractors Register is a tool for managing and monitoring the records of contractors, visitors, and workers in your organization.</p>
+</div>
+
+<div class="container features">
+    <h2>Main Features</h2>
+    <div class="row">
+        <div class="col-md-4 feature-item">
+            <h4>Contractor Management</h4>
+            <p>Register and track all contractor information efficiently.</p>
+        </div>
+        <div class="col-md-4 feature-item">
+            <h4>Visitor Registration</h4>
+            <p>Monitor visitors entering and leaving the premises.</p>
+        </div>
+        <div class="col-md-4 feature-item">
+            <h4>Worker Control</h4>
+            <p>Manage the activities and presence of workers in real-time.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container instructions">
+    <h2>How to Use the System</h2>
+    <p>Follow the steps below to manage records:</p>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h5>Adding Records</h5>
+            <p>To add a new record, navigate to the appropriate section (Contractors, Visitors, Workers) and click on the 
+                <button class="btn btn-primary"><i class="bi bi-building-fill-add"></i> Create <i class="bi bi-person-plus-fill"></i></button> button.</p>
+        </li>
+        <li class="list-group-item">
+            <h5>Updating Records</h5>
+            <p>To update an existing record, find the record in the list and click on the 
+                <button class="btn btn-warning">Update <i class="bi bi-pencil"></i></button> button next to it.</p>
+        </li>
+        <li class="list-group-item">
+            <h5>Deleting Records</h5>
+            <p>To delete a record, find the record in the list and click on the 
+                <button class="btn btn-danger">Delete <i class="bi bi-trash"></i></button> button next to it. Note: Deletion may be restricted if the record is referenced by other entries.</p>
+        </li>
+    </ul>
+    <p>If you do not see the options to add, edit, or delete, it is likely that you do not have the necessary permissions. Please contact your administrator for access.</p>
+</div>
+
+{% if user.is_superuser %}
+<div class="container admin-instructions">
+    <h2>Admin Instructions</h2>
+    <p>As an admin, you have additional capabilities to manage the system and users.</p>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h5>Django Admin Access</h5>
+            <p>You can access the Django admin interface for more advanced management options by clicking the link below:</p>
+            <a href="/admin" class="btn btn-dark">Django Admin</a>
+        </li>
+        <li class="list-group-item">
+            <h5>Create a New User</h5>
+            <p>To create a new user, click on the 
+                <a href="{% url 'generate_invitation' %}" class="btn btn-outline-primary btn-sm">Generate Invitation</a> link. On the invitation page, enter the email address of the new user and assign the appropriate permissions.</p>
+        </li>
+    </ul>
+</div>
+{% endif %}
+
+<div class="container contact">
+    <h2>Contact and Support</h2>
+    <p>For support or more information, contact us at: 
+        <a href="mailto:support@contractorsregister.com">support@contractorsregister.com</a></p>
+</div>
+
+{% endblock %}

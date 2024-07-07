@@ -1,0 +1,87 @@
+{% extends '_base.html' %}
+
+{% block title %} Visitor Detail {% endblock %}
+
+{% block content %}
+<style>
+        .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Work type:</th>
+                        <td>{{ object.work_type }}</td>
+                    </tr>
+                    <tr>
+                        <th>Company:</th>
+                        <td>{{ object.company }}</td>
+                    </tr>
+                    <tr>
+                        <th>Work code:</th>
+                        <td>{{ object.work_code }}</td>
+                    </tr>
+                    <tr>
+                        <th>Work reason:</th>
+                        <td>{{ object.work_reason }}</td>
+                    </tr>
+                    <tr>
+                        <th>Host:</th>
+                        <td>{{ object.responsible_worker }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contractor Name:</th>
+                        <td>{{ object.contractor_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contractor Number:</th>
+                        <td>{{ object.contractor_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Staircase:</th>
+                        <td>{{ object.staircase }}</td>
+                    </tr>
+                    <tr>
+                        <th>Location:</th>
+                        <td>{{ object.location }}</td>
+                    </tr>
+                    <tr>
+                        <th>Expect time:</th>
+                        <td>{{ object.expected_arriving_time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Arriving time:</th>
+                        <td>{{ object.arriving_time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Leaving Time:</th>
+                        <td>{{ object.leaving_time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Is in the building:</th>
+                        <td>{{ object.in_the_building }}</td>
+                    </tr>
+                    <tr>
+                        <th>Still working:</th>
+                        <td>{{ object.is_active }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% if perms.contractors.view_contractor %}
+<a href="{% url 'contractor_list'%}" class="btn btn-primary custom-btn">Contractor List</a>
+{% endif %}
+{% if perms.contractors.change_contractor %}
+<a href="{% url 'contractor_update' contractor.id %}" class="btn btn-warning custom-btn">Contractor update</a>
+{% endif %}
+{% if perms.contractors.delete_contractor %}
+<a href="{% url 'contractor_delete' contractor.id %}" class="btn btn-danger custom-btn">Contractor Delete</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block title %} Work Type Detail {% endblock %}
+
+{% block content %}
+<style>
+    .list-group-item {
+        font-size: x-large;
+    }
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">Work Type</li>
+        <li class="list-group-item">{{ object.name }}</li>
+    </ul>
+
+    {% if perms.work_type.view_worktype %}
+        <a href="{% url 'work_type_list' %}" class="btn btn-primary custom-btn">Work Type List</a>
+    {% endif %}
+    {% if perms.work_type.update_worktype %}
+        <a href="{% url 'work_type_update' object.id %}" class="btn btn-warning custom-btn">Work Type Update</a>
+    {% endif %}
+    {% if perms.work_type.delete_worktype %}
+        <a href="{% url 'work_type_delete' object.id%}" class="btn btn-danger custom-btn">Work Type Delete</a>
+    {% endif %}
+{% endblock %}

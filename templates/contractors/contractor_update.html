@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block title %} Visitor Update {% endblock %}
+
+{% block content %}
+<style>
+        .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Save visitor</button>
+</form>
+{% if perms.contractors.view_contractor %}
+<a href="{% url 'contractor_list'%}" class="btn btn-primary custom-btn">Contractor List</a>
+<a href="{% url 'contractor_detail' contractor.id %}" class="btn btn-warning custom-btn">Contractor update</a>
+{% endif %}
+{% if perms.contractors.delete_contractor %}
+<a href="{% url 'contractor_delete' contractor.id %}" class="btn btn-danger custom-btn">Contractor Delete</a>
+{% endif %}
+{% endblock %}

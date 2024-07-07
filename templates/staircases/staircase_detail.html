@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block title %} Staircase Detail {% endblock %}
+
+{% block content %}
+<style>
+    .list-group-item {
+        font-size: x-large;
+    }
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">Staircase</li>
+        <li class="list-group-item">{{ object.name }}</li>
+    </ul>
+        {% if perms.staircases.view_staircase %}
+            <a href="{% url 'staircase_list' %}" class="btn btn-primary custom-btn">Staircase List</a>
+        {% endif %}
+        {% if perms.staircases.update_staircase %}
+            <a href="{% url 'staircase_update' object.id %}" class="btn btn-warning custom-btn">Staircase Update</a>
+        {% endif %}
+        {% if perms.staircases.delete_staircase %}
+            <a href="{% url 'staircase_delete' object.id%}" class="btn btn-danger custom-btn">Staircase Delete</a>
+        {% endif %}
+   {% endblock %}
+

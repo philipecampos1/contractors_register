@@ -1,0 +1,27 @@
+{% extends '_base.html' %}
+
+{% block title %} Staircase Update {% endblock %}
+
+{% block content %}
+<style>
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Save staircase</button>
+</form>
+
+    </ul>
+        {% if perms.staircases.view_staircase %}
+            <a href="{% url 'staircase_list' %}" class="btn btn-primary custom-btn">Staircase List</a>
+            <a href="{% url 'staircase_detail' object.id %}" class="btn btn-info custom-btn">Staircase Details</a>
+        {% endif %}
+        {% if perms.staircases.delete_staircase %}
+            <a href="{% url 'staircase_delete' object.id%}" class="btn btn-danger custom-btn">Staircase Delete</a>
+        {% endif %}
+{% endblock %}

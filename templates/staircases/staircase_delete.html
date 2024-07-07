@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block title %} Staircase Delete {% endblock %}
+
+{% block content %}
+<style>
+    .text{
+        font-size: x-large;
+    }
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<p class="text">Are you sure you want to delete the Staircase <strong> {{ object.name }}</strong>?</p>
+
+<form action="{% url 'staircase_delete' object.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+    {% if perms.staircases.view_staircase %}
+        <a href="{% url 'staircase_list' %}" class="btn btn-primary custom-btn">Staircase List</a>
+        <a href="{% url 'staircase_detail' object.id %}" class="btn btn-info custom-btn">Staircase Info</a>
+        {% endif %}
+        {% if perms.staircases.change_staircase %}
+        <a href="{% url 'staircase_update' object.id%}" class="btn btn-warning custom-btn">Staircase Update</a>
+        {% endif %}
+{% endblock %}

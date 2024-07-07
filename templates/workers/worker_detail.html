@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+
+{% block title %} Workers Detail {% endblock %}
+
+{% block content %}
+<style>
+        .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Name:</th>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Staircase:</th>
+                        <td>{{ object.staircase }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telephone number:</th>
+                        <td>{{ object.telephone_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>{{ object.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+    {% if perms.workers.view_worker %}
+        <a href="{% url 'worker_list' %}" class="btn btn-primary custom-btn">Worker List</a>
+    {% endif %}
+    {% if perms.workers.update_worker %}
+        <a href="{% url 'worker_update' object.id %}" class="btn btn-warning custom-btn">Worker Update</a>
+    {% endif %}
+    {% if perms.workers.delete_worker %}
+        <a href="{% url 'worker_delete' object.id%}" class="btn btn-danger custom-btn">Worker Delete</a>
+    {% endif %}
+{% endblock %}

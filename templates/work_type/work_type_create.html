@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %} Create Work Type {% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Work type </button>
+</form>
+{% endblock %}

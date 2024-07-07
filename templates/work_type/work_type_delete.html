@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block title %} Work Type Delete {% endblock %}
+
+{% block content %}
+<style>
+    .text{
+        font-size: x-large;
+    }
+    .custom-btn {
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+</style>
+<p class="text">Are you sure you want to delete the work type <strong> {{ object.name }}</strong>?</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% if perms.work_type.view_worktype %}
+        <a href="{% url 'work_type_list' %}" class="btn btn-primary custom-btn">Work Type List</a>
+
+        <a href="{% url 'work_type_detail' object.id %}" class="btn btn-info custom-btn">Work Type Info</a>
+    {% endif %}
+    {% if perms.work_type.change_worktype %}
+        <a href="{% url 'work_type_update' object.id%}" class="btn btn-warning custom-btn">Work Type Update</a>
+    {% endif %}
+{% endblock %}

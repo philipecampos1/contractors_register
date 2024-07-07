@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Invitation Fail{% endblock %}
+
+{% block content %}
+<h1>Something went wrong</h1>
+
+<p>Sorry but your invitation wasn`t valid please request to send another</p>
+<p>You can retur to the main page now <a href="{% url 'index' %}">Home <i class="bi bi-house"></i></a></p>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block title %} User register {% endblock %}
+
+{% block content %}
+
+<div class="px-4 py-5 my-5 text-center">
+  {% if user.is_authenticated %}
+    <h1 class="display-5 fw-bold text-body-emphasis">Welcome user {{ user.username }}</h1>
+  {% else %}
+    <h1 class="display-5 fw-bold text-body-emphasis">Welcome to contractor register please login </h1>
+  {% endif %}
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">This is the home page of this website here you can access login/logout or you can get instructions that will guide you through</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        {% if user.is_authenticated %}
+          <form action="{% url 'account_logout' %}" method="post">
+            {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">logout</button>
+          </form>
+          {% else %}          
+            <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
+          {% endif %}
+            <a href="{% url 'instructions' %}" class="btn btn-outline-secondary btn-lg px-4">Instructions</a>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
