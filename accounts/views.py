@@ -20,7 +20,6 @@ class GenerateInvitationView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         invitation = form.save(commit=False)
         invitation.group = form.cleaned_data['group']
         invitation.save()
-
         invite_url = self.request.build_absolute_uri(reverse_lazy('register', kwargs={'token': invitation.token}))
         superuser_email = self.request.user.email
         send_mail(

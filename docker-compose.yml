@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: db.postegresql
+      POSTGRES_USER: philipe
+      POSTGRES_PASSWORD: senha123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+  
